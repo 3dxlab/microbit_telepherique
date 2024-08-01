@@ -39,9 +39,9 @@ namespace GroveMotor {
 
     /**/
     export enum i2c_Moteur {
-        //% block="Moteur1"
+        //% block="Moteur 1"
         MOTOR1,
-        //% block="Moteur2"
+        //% block="Moteur 2"
         MOTOR2
     }
 
@@ -72,10 +72,10 @@ namespace GroveMotor {
         * @param Vitesse du moteur1 et du moteur2 ?
         */
     //%blockId= Grove_Moteur_I2c
-    //% block="Tourner vers la droite: moteur1 %Vitesse1 et moteur2 %Vitesse2"
-    //% vitesse1.min=0 vitesse1.max=100
+    //% block="Tourner vers la droite à la puissance %Vitesse2"
     //% vitesse2.min=-100 vitesse2.max=0
-    export function TournerDroite(vitesse1: number, vitesse2: number): void {
+    export function TournerDroite(vitesse2: number): void {
+        const vitesse1 = 0;
         let iVitesse1 = pins.map(vitesse1, 0, 100, 0, 255)
         let iVitesse2 = pins.map(Math.abs(vitesse2), 0, 100, 0, 255)
         setregister(DirectionSet, M1CWM2ACW, 0x00);//Direction;
@@ -191,7 +191,7 @@ namespace GroveMotor {
        * @param Fréquence  Quelle fréquence de communication avec le grove ?
        */
     //%blockId= Grove_Moteur_I2c
-    //% block="InitI2c moteur adresse : %Adresse sur Frequence : %Frequence"
+    //% block="Initialiser la communication I2C à l'adresse : %Adresse sur la fréquence : %Frequence"
     export function set_init(Adresse: Adresse_Grove, Frequence: i2c_Frequence): void {
         //Validation de l'adresse I2c du module
         if (Adresse == 0x0f) {

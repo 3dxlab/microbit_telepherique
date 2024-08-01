@@ -1,5 +1,5 @@
 {
-    "name": "Microbit_I2c_Moteur_Grove",
+    "name": "Téléphérique",
     "description": "",
     "dependencies": {
         "core": "*",
