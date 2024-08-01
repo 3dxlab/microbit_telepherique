@@ -1,8 +1,12 @@
 /* Blocks pour utilisation de la carte i2c_moteur_grove
     **PAS DE CODE POUR LE STEPPER **
-    ****** By Malherbe Eric - eric.malherbe@ac-orleans-tours.fr- ******/
+    ****** By Malherbe Eric - eric.malherbe@ac-orleans-tours.fr- *****
+    
+    Modifié par Jean BURBAUD, avec complices...
 
-//% weight=100 color=#94280d icon="\uf1b9" block="I2c_Moteur_Grove"
+    */
+
+//% weight=100 color=#94280d icon="\uf7da" block="Téléphérique"
 
 namespace GroveMotor {
 
