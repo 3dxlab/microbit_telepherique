@@ -1,8 +1,12 @@
 /* Blocks pour utilisation de la carte i2c_moteur_grove
     **PAS DE CODE POUR LE STEPPER **
-    ****** By Malherbe Eric - eric.malherbe@ac-orleans-tours.fr- ******/
+    ****** By Malherbe Eric - eric.malherbe@ac-orleans-tours.fr- *****
+    
+    Modifié par Jean BURBAUD, avec complices...
 
-//% weight=100 color=#94280d icon="\uf1b9" block="I2c_Moteur_Grove"
+    */
+
+//% weight=100 color=#94280d icon="\uf7da" block="Téléphérique"
 
 namespace GroveMotor {
 
@@ -87,10 +91,10 @@ namespace GroveMotor {
         * @param Vitesse du moteur1 et du moteur2 ?
         */
     //%blockId= Grove_Moteur_I2c
-    //% block="Tourner vers la gauche: moteur1 %Vitesse1 et moteur2 %Vitesse2"
+    //% block="Tourner vers la gauche à la puissance %Vitesse2"
     //% vitesse2.min=0 vitesse2.max=100
-    //% vitesse1.min=-100 vitesse1.max=0
-    export function TournerGauche(vitesse1: number, vitesse2: number): void {
+    export function TournerGauche(vitesse2: number): void {
+        const vitesse1 = 0;
         let iVitesse1 = pins.map(vitesse1, 0, 100, 0, 255)
         let iVitesse2 = pins.map(Math.abs(vitesse2), 0, 100, 0, 255)
         setregister(DirectionSet, M1ACWM2CW, 0x00);//Direction;
@@ -98,91 +102,13 @@ namespace GroveMotor {
     }
 
     /**
-        * Arrêter le moteur 1 ou 2 
-        * @param moteur  quel moteur ?
+        * Permettre d'arrêter les 2 moteurs (changement car un seul moteur utilisé)
         */
     //%blockId= Grove_Moteur_I2c
-    //% block="Arrêter le %motor"
-    export function ArretMoteur(motor: i2c_Moteur): void {
-        if (motor == i2c_Moteur.MOTOR1) {
-            setregister(MotorSetA, ClockWise, 0x00);//Direction;
-            setregister(MotorSpeedSet, 0, Nothing);//MotorSpeedSet;
-        } else if (motor == i2c_Moteur.MOTOR2) {
-            setregister(MotorSetB, ClockWise, 0x00);//Direction;
-            setregister(MotorSpeedSet, 0, Nothing);//MotorSpeedSet;
-        }
-    }
-
-    /**
-        * Permettre de faire tourner le moteur 1 vers l'arriere
-        * @param vitesse  quelle vitesse du moteur ?
-        */
-    //%blockId= Grove_Moteur_I2c
-    //% block="Tourner vers l'arrière le %motor à la vitesse %vitesse"
-    //% vitesse.min=-100 vitesse.max=0
-    export function Recule1Moteur(motor: i2c_Moteur, vitesse: number): void {
-        let iVitesse1 = pins.map(Math.abs(vitesse), 0, 100, 0, 255)
-        if (motor == i2c_Moteur.MOTOR1) {
-            setregister(MotorSetA, AntiClockWise, 0x00);//Direction;
-            setregister(MotorSpeedSet, iVitesse1, Nothing);//MotorSpeedSet;
-        } else if (motor == i2c_Moteur.MOTOR2) {
-            setregister(MotorSetB, AntiClockWise, 0x00);//Direction;
-            setregister(MotorSpeedSet, Nothing, iVitesse1);//MotorSpeedSet;
-        }
-    }
-
-    /**
-         * Permettre de faire tourner le moteur 1 vers l'avant
-         * @param vitesse  quelle vitesse du moteur ?
-         */
-    //%blockId= Grove_Moteur_I2c
-    //% block="Tourner vers l'avant le %motor à la vitesse %vitesse"
-    //% vitesse.min=0 vitesse.max=100
-    export function Avance1Moteur(motor: i2c_Moteur, vitesse: number): void {
-        let iVitesse1 = pins.map(vitesse, 0, 100, 0, 255)
-        if (motor == i2c_Moteur.MOTOR1) {
-            setregister(MotorSetA, ClockWise, 0x00);//Direction;
-            setregister(MotorSpeedSet, iVitesse1, Nothing);//MotorSpeedSet;
-        } else if (motor == i2c_Moteur.MOTOR2) {
-            setregister(MotorSetB, ClockWise, 0x00);//Direction;
-            setregister(MotorSpeedSet, Nothing, iVitesse1);//MotorSpeedSet;
-        }
-    }
-
-    /**
-        * Permettre d'arrêter les 2 moteurs 
-        */
-    //%blockId= Grove_Moteur_I2c
-    //% block="Arrêter les 2 moteurs"
+    //% block="Arrêter le moteur"
     export function ArretMoteurs(): void {
         setregister(DirectionSet, BothClockWise, 0x00);//Direction; 
         setregister(MotorSpeedSet, 0, 0);//MotorSpeedSet;
-    }
-
-    /**
-         * Permettre de faire tourner les 2 moteurs vers l'arrière
-         * @param vitesse  quelle vitesse des moteurs ?
-         */
-    //%blockId= Grove_Moteur_I2c
-    //% block="Reculer à la vitesse %vitesse"
-    //% vitesse.min=-100 vitesse.max=0
-    export function ReculerMoteurs(vitesse: number): void {
-        let iVitesse = pins.map(Math.abs(vitesse), 0, 100, 0, 255)
-        setregister(DirectionSet, BothAntiClockWise, 0x00);//Direction;
-        setregister(MotorSpeedSet, iVitesse, iVitesse);//MotorSpeedSet;
-    }
-
-    /**
-        * Permettre de faire tourner les 2 moteurs vers l'avant
-        * @param vitesse  quelle vitesse des moteurs ?
-        */
-    //%blockId= Grove_Moteur_I2c
-    //% block="Avancer à la vitesse %vitesse"
-    //% vitesse.min=0 vitesse.max=100
-    export function AvancerMoteurs(vitesse: number): void {
-        let iVitesse = pins.map(vitesse, 0, 100, 0, 255)
-        setregister(DirectionSet, BothAntiClockWise, 0x00);//Direction;
-        setregister(MotorSpeedSet, iVitesse, iVitesse);//MotorSpeedSet;
     }
 
     /**
@@ -191,7 +117,7 @@ namespace GroveMotor {
        * @param Fréquence  Quelle fréquence de communication avec le grove ?
        */
     //%blockId= Grove_Moteur_I2c
-    //% block="Initialiser la communication I2C à l'adresse : %Adresse sur la fréquence : %Frequence"
+    //% block="Initialiser la communication I2C à l'adresse %Adresse sur la fréquence %Frequence"
     export function set_init(Adresse: Adresse_Grove, Frequence: i2c_Frequence): void {
         //Validation de l'adresse I2c du module
         if (Adresse == 0x0f) {
