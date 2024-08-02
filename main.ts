@@ -6,7 +6,7 @@
 
     */
 
-//% weight=100 color=#94280d icon="\uf085" block="Téléphérique"
+//% weight=100 color=#94280d icon="\uf085" block="Pilotage moteur"
 
 namespace GroveMotor {
 
