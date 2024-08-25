@@ -59,15 +59,15 @@ namespace GroveMotor {
 
     /**/
     export enum i2c_Frequence {
-        //% block="F_3921Hz"
+        //% block="3921Hz"
         F_3921Hz,
-        //% block="F_31372Hz"
+        //% block="31372Hz"
         F_31372Hz,
-        //% block="F_490Hz"
+        //% block="490Hz"
         F_490Hz,
-        //% block="F_122Hz"
+        //% block="122Hz"
         F_122Hz,
-        //% block="F_30Hz"
+        //% block="30Hz"
         F_30Hz
     }
 

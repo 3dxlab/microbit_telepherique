@@ -1,5 +1,5 @@
 {
-    "name": "Téléphérique",
+    "name": "Pilotage d'un moteur",
     "description": "",
     "dependencies": {
         "core": "*",
