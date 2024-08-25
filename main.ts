@@ -76,7 +76,7 @@ namespace GroveMotor {
         * @param Vitesse du moteur1 et du moteur2 ?
         */
     //%blockId= Grove_Moteur_I2c
-    //% block="Tourner dans le sens A à la puissance %Vitesse2"
+    //% block="Tourner dans le sens B à la puissance %Vitesse2"
     //% vitesse2.min=-100 vitesse2.max=0
     export function TournerDroite(vitesse2: number): void {
         const vitesse1 = 0;
@@ -91,7 +91,7 @@ namespace GroveMotor {
         * @param Vitesse du moteur1 et du moteur2 ?
         */
     //%blockId= Grove_Moteur_I2c
-    //% block="Tourner dans le sens B à la puissance %Vitesse2"
+    //% block="Tourner dans le sens A à la puissance %Vitesse2"
     //% vitesse2.min=0 vitesse2.max=100
     export function TournerGauche(vitesse2: number): void {
         const vitesse1 = 0;
